@@ -2,7 +2,6 @@ package com.wecp.progressive.service;
 
 
 import com.wecp.progressive.dao.CustomerDAO;
-import com.wecp.progressive.dao.CustomerDAOImpl;
 import com.wecp.progressive.entity.Customers;
 
 import java.sql.SQLException;

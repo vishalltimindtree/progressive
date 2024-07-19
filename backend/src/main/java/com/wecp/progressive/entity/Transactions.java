@@ -1,40 +1,32 @@
 package com.wecp.progressive.entity;
-
+import javax.persistence.*;
 import java.util.Date;
-
-// @Entity
-// @Table(name = "transactions")
+@Entity
 public class Transactions {
-    // @Id
-    // @Column(name ="transaction_id" )
-    // @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int transactionId;
-
-    // @ManyToOne
-    // @JoinColumn(name = "account_id",nullable = false)
-    // private Accounts accounts;
-    private int accountId;
-
-    // @Column(name = "amount",nullable = false)
-    private Double amount;
-
-    // @Column(name = "transaction_date",nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "accountId")
+    private Accounts accounts;
+    private double amount;
+    private String transactionType;
     private Date transactionDate;
 
-    // @Column(name = "transaction_type",nullable = false)
-    private String transactionType;
-
     public Transactions() {
+        //
     }
 
-    public Transactions(int transactionId, int accountId, Double amount, Date timeStamp, String transactionType) {
+    public Transactions(int transactionId, int accountId, double amount, Date timestamp, String transactionType) {
         this.transactionId = transactionId;
-        this.accountId = accountId;
+        this.accounts.setAccountId(accountId);
         this.amount = amount;
-        this.transactionDate = timeStamp;
+        this.transactionDate = timestamp;
         this.transactionType = transactionType;
     }
 
+    // Getters and setters
     public int getTransactionId() {
         return transactionId;
     }
@@ -43,20 +35,20 @@ public class Transactions {
         this.transactionId = transactionId;
     }
 
-    public int getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(int accountId) {
-        this.accountId = accountId;
-    }
-
-    public Double getAmount() {
+    public double getAmount() {
         return amount;
     }
 
-    public void setAmount(Double amount) {
+    public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public Accounts getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(Accounts accounts) {
+        this.accounts = accounts;
     }
 
     public Date getTransactionDate() {
@@ -66,7 +58,7 @@ public class Transactions {
     public void setTransactionDate(Date transactionDate) {
         this.transactionDate = transactionDate;
     }
-
+    
     public String getTransactionType() {
         return transactionType;
     }
