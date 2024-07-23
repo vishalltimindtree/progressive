@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
-import { Transaction } from "../types/TransactionTS";
+import { TransactionTS } from "../types/Transaction";
 import { Observable } from "rxjs";
-import { Customer } from "../types/CustomerTS";
-import { Account } from "../types/AccountTS";
+import { CustomerTS } from "../types/Customer";
+import { AccountTS } from "../types/Account";
 // import { transition } from "@angular/animations";
 
 @Injectable({
@@ -15,24 +15,24 @@ export class BankService {
 
   constructor(private http: HttpClient) {}
 
-  addCustomer(customer: Customer): Observable<Customer> {
+  addCustomer(customer: CustomerTS): Observable<CustomerTS> {
   }
 
-  getCustomers(): Observable<Customer[]> {
+  getCustomers(): Observable<CustomerTS[]> {
     
 
   }
 
-  addAccount(account: Account): Observable<Account> {
+  addAccount(account: AccountTS): Observable<AccountTS> {
    
   }
 
-  getAccounts(): Observable<Account[]> {
+  getAccounts(): Observable<AccountTS[]> {
     
 
   }
 
-  performTransaction(transaction: Transaction): Observable<Transaction> {
+  performTransaction(transaction: TransactionTS): Observable<TransactionTS> {
    
   }
 
@@ -40,17 +40,17 @@ export class BankService {
     
   }
 
-  getAllTranactions(): Observable<Transaction[]> {
+  getAllTranactions(): Observable<TransactionTS[]> {
     
 
   }
   /** get account by user */
-  getAccountsByUser(userId:string|null): Observable<Account[]> {
+  getAccountsByUser(userId:string|null): Observable<AccountTS[]> {
     
 
   }
 
-  getTransactionByUser(userId: string|null): Observable<Transaction[]> {
+  getTransactionByUser(userId: string|null): Observable<TransactionTS[]> {
     
 
   }
@@ -59,7 +59,7 @@ export class BankService {
     
   }
 
-  editCustomer(customer: Customer): Observable<Customer> {
+  editCustomer(customer: CustomerTS): Observable<CustomerTS> {
    
   }
 
@@ -67,7 +67,7 @@ export class BankService {
     
   }
 
-  editAccount(account: Account): Observable<Account> {
+  editAccount(account: AccountTS): Observable<AccountTS> {
     // return null;
   }
 
