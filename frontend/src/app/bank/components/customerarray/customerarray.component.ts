@@ -11,5 +11,8 @@ import { CustomerTS } from '../../types/tstypes/Customerts';
   styleUrls: ['./customerarray.component.css']
 })
 export class CustomerarrayComponent {
-  
+  customers: CustomerTS[] = [
+    new CustomerTS("John Doe", "john@example.com", "john_doe", "password123", "User", "1"),
+    new CustomerTS("Mary Jane", "maryjane@example.com", "mary_jane", "password123", "User", "2"),
+  ];
 }
