@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { environment } from "src/environments/environment";
 import { HttpClient } from "@angular/common/http";
-import { TransactionTS } from "../types/tstypes/Transactionts";
+import { Transaction } from "../types/Transaction";
 import { Observable } from "rxjs";
-import { CustomerTS } from "../types/tstypes/Customerts";
-import { AccountTS } from "../types/tstypes/Accountts";
+import { Customer } from "../types/Customer";
+import { Account } from "../types/Account";
 // import { transition } from "@angular/animations";
 
 @Injectable({
@@ -13,62 +13,83 @@ import { AccountTS } from "../types/tstypes/Accountts";
 export class BankService {
   private baseUrl = `${environment.apiUrl}`;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  addCustomer(customer: CustomerTS): Observable<CustomerTS> {
+  addCustomer(customer: Customer): Observable<Customer> {
+    return this.http.post<Customer>(`${this.baseUrl}/customers`, customer);
   }
 
-  getCustomers(): Observable<CustomerTS[]> {
-    
-
-  }
-
-  addAccount(account: AccountTS): Observable<AccountTS> {
-   
-  }
-
-  getAccounts(): Observable<AccountTS[]> {
-    
+  getCustomers(): Observable<Customer[]> {
+    return this.http.get<Customer[]>(
+      `${this.baseUrl}/customers`
+    );
 
   }
 
-  performTransaction(transaction: TransactionTS): Observable<TransactionTS> {
-   
+  addAccount(account: Account): Observable<Account> {
+    return this.http.post<Account>(`${this.baseUrl}/accounts`, account);
+  }
+
+  getAccounts(): Observable<Account[]> {
+    return this.http.get<Account[]>(
+      `${this.baseUrl}/accounts`
+    );
+
+  }
+
+  performTransaction(transaction: Transaction): Observable<Transaction> {
+    return this.http.post<Transaction>(
+      `${this.baseUrl}/transactions`,
+      transaction
+    );
   }
 
   getOutstandingBalance(userId: string): Observable<number> {
-    
+    return this.http.get<number>(
+      `${this.baseUrl}/out-standing?userId=${userId}`
+    );
+
   }
 
-  getAllTranactions(): Observable<TransactionTS[]> {
-    
+  getAllTranactions(): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(
+      `${this.baseUrl}/transactions`
+    );
 
   }
   /** get account by user */
-  getAccountsByUser(userId:string|null): Observable<AccountTS[]> {
-    
+  getAccountsByUser(userId: string | null): Observable<Account[]> {
+    return this.http.get<Account[]>(
+      `${this.baseUrl}/accounts/user/${userId}`
+    );
 
   }
 
-  getTransactionByUser(userId: string|null): Observable<TransactionTS[]> {
-    
+  getTransactionByUser(userId: string | null): Observable<Transaction[]> {
+    return this.http.get<Transaction[]>(
+      `${this.baseUrl}/transactions/customer/${userId}`
+    );
 
   }
 
   deleteCustomer(customerId: number): Observable<any> {
-    
+    return this.http.delete(`${this.baseUrl}/customers/${customerId}`);
   }
 
-  editCustomer(customer: CustomerTS): Observable<CustomerTS> {
-   
+  editCustomer(customer: Customer): Observable<Customer> {
+    console.log(customer);
+    const url = `${this.baseUrl}/customers/${customer.customerId}`;
+    return this.http.put<Customer>(url, customer);
   }
 
   deleteAccount(accountId: number): Observable<any> {
-    
+    return this.http.delete(`${this.baseUrl}/accounts/${accountId}`);
   }
 
-  editAccount(account: AccountTS): Observable<AccountTS> {
-    // return null;
+  editAccount(account: Account): Observable<Account> {
+    console.log(account);
+    const url = `${this.baseUrl}/accounts/${account.customer?.customerId}`;
+    return this.http.put<Account>(url, account);
   }
 
 

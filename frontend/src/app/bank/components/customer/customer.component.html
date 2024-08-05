@@ -1,3 +1,5 @@
+<app-navbar></app-navbar>
+
 <form (ngSubmit)="onSubmit()" [formGroup]="customerForm" class="user-form">
     <div class="form-group">
         <label for="userId">Name:</label>
@@ -13,7 +15,7 @@
     </div>
     <div class="form-group">
         <label for="userId">Password:</label>
-        <input type="text" id="password" formControlName="password" class="form-control" />
+        <input type="password" id="password" formControlName="password" class="form-control" />
     </div>
     <button type="submit" class="btn-submit">Create Customer</button>
 
@@ -26,4 +28,5 @@
         </div>
     </ng-container>
 
+    <a routerLink="/bank" class="task-list" class="task-list">Dashboard</a>
 </form>
