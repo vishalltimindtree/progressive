@@ -17,7 +17,9 @@ export class EditCustomerComponent implements OnInit {
     customerSuccess$: Observable<string>;
     isFormSubmitted: boolean = false;
     customer: Customer;
-
+    selectedValue: string;
+    items: Array<any> =
+        [{ article: 'User', value: 'User' }, { article: 'Admin', value: 'Admin', defaultSelected: true }];
 
     constructor(
         private route: ActivatedRoute,
@@ -29,6 +31,8 @@ export class EditCustomerComponent implements OnInit {
         this.route.params.subscribe(params => {
             // Get the customer data from the route parameter
             this.customer = params as Customer;
+            this.selectedValue = this.items.filter(a => a.defaultSelected)[0].value;
+
             console.log(this.customer);
         });
         this.customerForm = this.formBuilder.group({
@@ -63,6 +67,7 @@ export class EditCustomerComponent implements OnInit {
                     this.customerSuccess$ = of('Customer Updated successfully');
                 },
                 (error) => {
+                    console.log(error);
                     this.customerError$ = of("Customer Already Exists !!");
                 }
             );

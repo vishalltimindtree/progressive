@@ -1,6 +1,5 @@
 package com.wecp.progressive.service;
 
-
 import com.wecp.progressive.entity.Accounts;
 import com.wecp.progressive.exception.AccountNotFoundException;
 import com.wecp.progressive.repository.AccountRepository;
@@ -13,9 +12,10 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AccountServiceImplJpa implements AccountService{
+public class AccountServiceImplJpa implements AccountService {
 
     private AccountRepository accountRepository;
+
     @Autowired
     public AccountServiceImplJpa(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
@@ -36,8 +36,7 @@ public class AccountServiceImplJpa implements AccountService{
         Optional<Accounts> accounts = accountRepository.findById(accountId);
         if (accounts.isPresent()) {
             return accounts.get();
-        }
-        else {
+        } else {
             throw new AccountNotFoundException("No accounts found linked with this accountId");
         }
     }

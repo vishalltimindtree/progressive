@@ -6,12 +6,12 @@ export class CustomerTS {
     username: string;
     role?: string;
 
-    constructor(name: string, email: string, username: string, password: string, role: string, customerId?: string) {
+    constructor(name: string, email: string, username: string, password: string, role?: string, customerId?: string) {
         this.customerId = customerId;
         this.name = name;
         this.email = email;
-        this.username = username;
         this.password = password;
+        this.username = username;
         this.role = role;
     }
 
@@ -26,7 +26,5 @@ export class CustomerTS {
     }
 }
 
-
-// Example Usage
-const customer = new CustomerTS("John Doe", "john@example.com", "john_doe", "password123", "User", "1");
+const customer = new CustomerTS("John Doe", "john@example.com", "john_doe", "password123", "User");
 customer.displayInfo();

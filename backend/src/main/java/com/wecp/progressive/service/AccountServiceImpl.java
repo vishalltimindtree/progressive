@@ -1,5 +1,5 @@
-package com.wecp.progressive.service;
 
+package com.wecp.progressive.service;
 
 import com.wecp.progressive.dao.AccountDAO;
 import com.wecp.progressive.entity.Accounts;
@@ -13,6 +13,7 @@ public class AccountServiceImpl implements AccountService {
     private AccountDAO accountDAO;
 
     private static List<Accounts> accountsList = new ArrayList<>();
+
     public AccountServiceImpl(AccountDAO accountDAO) {
         this.accountDAO = accountDAO;
     }
@@ -51,9 +52,8 @@ public class AccountServiceImpl implements AccountService {
         return sortedAccounts;
     }
 
-
     @Override
-    public List<Accounts> getAccountsByUser(int userId) throws SQLException{
+    public List<Accounts> getAccountsByUser(int userId) throws SQLException {
         return accountDAO.getAllAccounts();
     }
 
@@ -73,6 +73,7 @@ public class AccountServiceImpl implements AccountService {
     public List<Accounts> getAllAccountsFromArrayList() {
         return accountsList;
     }
+
     @Override
     public List<Accounts> addAccountToArrayList(Accounts accounts) {
         accountsList.add(accounts);

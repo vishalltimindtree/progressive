@@ -1,6 +1,5 @@
 package com.wecp.progressive.controller;
 
-
 import com.wecp.progressive.entity.Accounts;
 import com.wecp.progressive.service.AccountService;
 
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.util.List;
-
 
 @RestController
 @RequestMapping("/accounts")
@@ -48,6 +46,7 @@ public class AccountController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<Accounts>> getAccountsByUser(@PathVariable String userId) {
         try {
